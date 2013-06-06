@@ -1,8 +1,15 @@
 
 public class TennisGame1 implements TennisGame {
     
-    private int m_score1 = 0;
-    private int m_score2 = 0;
+    private static final String ALL = "All";
+	private static final String DASH = "-";
+	private static final String DEUCE = "Deuce";
+	private static final String FORTY = "Forty";
+	private static final String THIRTY = "Thirty";
+	private static final String FIFTEEN = "Fifteen";
+	private static final String LOVE = "Love";
+	private int playerOneScore = 0;
+    private int playerTwoScore = 0;
     private String player1Name;
     private String player2Name;
 
@@ -12,40 +19,40 @@ public class TennisGame1 implements TennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
-            m_score1 += 1;
+		if (playerName == player1Name)
+            playerOneScore += 1;
         else
-            m_score2 += 1;
+            playerTwoScore += 1;
     }
 
     public String getScore() {
         String score = "";
         int tempScore=0;
-        if (m_score1==m_score2)
+        if (playerOneScore==playerTwoScore)
         {
-            switch (m_score1)
+            String dashAll = DASH + ALL;
+			switch (playerOneScore)
             {
                 case 0:
-                        score = "Love-All";
+                        score = LOVE + dashAll;
                     break;
                 case 1:
-                        score = "Fifteen-All";
+                        score = FIFTEEN + dashAll;
                     break;
                 case 2:
-                        score = "Thirty-All";
+                        score = THIRTY + dashAll;
                     break;
                 case 3:
-                        score = "Forty-All";
+                        score = FORTY + dashAll;
                     break;
                 default:
-                        score = "Deuce";
+                        score = DEUCE;
                     break;
-                
             }
         }
-        else if (m_score1>=4 || m_score2>=4)
+        else if (playerOneScore>=4 || playerTwoScore>=4)
         {
-            int minusResult = m_score1-m_score2;
+            int minusResult = playerOneScore-playerTwoScore;
             if (minusResult==1) score ="Advantage player1";
             else if (minusResult ==-1) score ="Advantage player2";
             else if (minusResult>=2) score = "Win for player1";
@@ -55,21 +62,21 @@ public class TennisGame1 implements TennisGame {
         {
             for (int i=1; i<3; i++)
             {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
+                if (i==1) tempScore = playerOneScore;
+                else { score+=DASH; tempScore = playerTwoScore;}
                 switch(tempScore)
                 {
                     case 0:
-                        score+="Love";
+                        score+=LOVE;
                         break;
                     case 1:
-                        score+="Fifteen";
+                        score+=FIFTEEN;
                         break;
                     case 2:
-                        score+="Thirty";
+                        score+=THIRTY;
                         break;
                     case 3:
-                        score+="Forty";
+                        score+=FORTY;
                         break;
                 }
             }
