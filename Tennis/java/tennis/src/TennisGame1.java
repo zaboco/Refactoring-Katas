@@ -67,29 +67,36 @@ public class TennisGame1 implements TennisGame {
 		String score = "";
 		int minusResult = playerOneScore-playerTwoScore;
 		
-		if(Math.abs(minusResult) == 1)
+		if(onePlayerHasAdvantage(minusResult))
 		{
-		score = computeScoreForAdvantage(minusResult);
+			score = computeScoreForAdvantage(minusResult);
 		}
-		else if(Math.abs(minusResult) >= 2)
+		else if(onePlayerWon(minusResult))
 		{
-		score = computeScoreForWinning(score, minusResult);
+			score = computeScoreForWinning(score, minusResult);
 		}
 		
 		return score;
 	}
 
 	private String computeScoreForWinning(String score, int minusResult) {
-		if (isPlayerOne(minusResult)) score = "Win for player1";
-		if (isPlayerTwo(minusResult)) score ="Win for player2";
-		return score;
+		if (isPlayerOne(minusResult)) return "Win for" + " " + "player1";
+		if (isPlayerTwo(minusResult)) return "Win for" + " " + "player2";
+		return "";
 	}
 
-
 	private String computeScoreForAdvantage(int minusResult) {
-		if (isPlayerOne(minusResult)) return "Advantage player1";
-		if (isPlayerTwo(minusResult)) return "Advantage player2";
+		if (isPlayerOne(minusResult)) return "Advantage" + " " + "player1";
+		if (isPlayerTwo(minusResult)) return "Advantage" + " " + "player2";
 		return "";
+	}
+	
+	private boolean onePlayerWon(int minusResult) {
+		return Math.abs(minusResult) >= 2;
+	}
+	
+	private boolean onePlayerHasAdvantage(int minusResult) {
+		return Math.abs(minusResult) == 1;
 	}
 
 	private boolean isPlayerTwo(int minusResult) {
