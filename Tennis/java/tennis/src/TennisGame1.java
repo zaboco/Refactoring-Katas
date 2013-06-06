@@ -67,22 +67,37 @@ public class TennisGame1 implements TennisGame {
 		String score = "";
 		int minusResult = playerOneScore-playerTwoScore;
 		
+		if(Math.abs(minusResult) == 1)
+		{
 		score = computeScoreForAdvantage(minusResult);
+		}
+		else if(Math.abs(minusResult) >= 2)
+		{
 		score = computeScoreForWinning(score, minusResult);
+		}
 		
 		return score;
 	}
 
 	private String computeScoreForWinning(String score, int minusResult) {
-		if (minusResult>=2) score = "Win for player1";
-		if (minusResult<=-2) score ="Win for player2";
+		if (isPlayerOne(minusResult)) score = "Win for player1";
+		if (isPlayerTwo(minusResult)) score ="Win for player2";
 		return score;
 	}
 
+
 	private String computeScoreForAdvantage(int minusResult) {
-		if (minusResult==1) return "Advantage player1";
-		if (minusResult ==-1) return "Advantage player2";
+		if (isPlayerOne(minusResult)) return "Advantage player1";
+		if (isPlayerTwo(minusResult)) return "Advantage player2";
 		return "";
+	}
+
+	private boolean isPlayerTwo(int minusResult) {
+		return minusResult<0;
+	}
+	
+	private boolean isPlayerOne(int minusResult) {
+		return minusResult>0;
 	}
 
 	private String getScoreForPlayersWhenScoreIsEqual() {
