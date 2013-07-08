@@ -1,3 +1,9 @@
-.metadata
-/.metadata
-.class
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Eclipse
+*.metadata
