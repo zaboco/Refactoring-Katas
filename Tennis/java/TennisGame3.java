@@ -13,16 +13,18 @@ public class TennisGame3 implements TennisGame {
     }
 
     public String getScore() {
-        String s;
+        String firstPlayerScoreLabel;
+        boolean playersHaveEqualPoints = firstPlayerPoints == secondPlayerPoints;
         if (firstPlayerPoints < MAXIMUM_GAME_POINTS && secondPlayerPoints < MAXIMUM_GAME_POINTS) {
-            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
-            s = p[firstPlayerPoints];
-            return (firstPlayerPoints == secondPlayerPoints) ? s + "-All" : s + "-" + p[secondPlayerPoints];
+            String[] scoreLabels = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
+            firstPlayerScoreLabel = scoreLabels[firstPlayerPoints];
+            String secondPlayerScoreLabel = playersHaveEqualPoints ? "All" : scoreLabels[secondPlayerPoints];
+            return firstPlayerScoreLabel + "-" + secondPlayerScoreLabel;
         } else {
-            if (firstPlayerPoints == secondPlayerPoints)
+            if (playersHaveEqualPoints)
                 return "Deuce";
-            s = firstPlayerPoints > secondPlayerPoints ? firstPlayerName : secondPlayerName;
-            return ((firstPlayerPoints - secondPlayerPoints)*(firstPlayerPoints - secondPlayerPoints) == 1) ? "Advantage " + s : "Win for " + s;
+            firstPlayerScoreLabel = firstPlayerPoints > secondPlayerPoints ? firstPlayerName : secondPlayerName;
+            return ((firstPlayerPoints - secondPlayerPoints)*(firstPlayerPoints - secondPlayerPoints) == 1) ? "Advantage " + firstPlayerScoreLabel : "Win for " + firstPlayerScoreLabel;
         }
     }
     
