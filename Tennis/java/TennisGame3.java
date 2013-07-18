@@ -23,8 +23,11 @@ public class TennisGame3 implements TennisGame {
         } else {
             if (playersHaveEqualPoints)
                 return "Deuce";
-            firstPlayerScoreLabel = firstPlayerPoints > secondPlayerPoints ? firstPlayerName : secondPlayerName;
-            return ((firstPlayerPoints - secondPlayerPoints)*(firstPlayerPoints - secondPlayerPoints) == 1) ? "Advantage " + firstPlayerScoreLabel : "Win for " + firstPlayerScoreLabel;
+            boolean fistPlayerHasMorePoints = firstPlayerPoints > secondPlayerPoints;
+            String leadingPlayerName = fistPlayerHasMorePoints ? firstPlayerName : secondPlayerName;
+            boolean oneOfThePlayersHasAdvantage = (firstPlayerPoints - secondPlayerPoints) * (firstPlayerPoints - secondPlayerPoints) == 1;
+            String gameStatus = oneOfThePlayersHasAdvantage ? "Advantage " : "Win for ";
+            return gameStatus + leadingPlayerName;
         }
     }
     
