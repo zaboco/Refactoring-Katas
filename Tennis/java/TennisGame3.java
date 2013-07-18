@@ -5,12 +5,12 @@ public class TennisGame3 implements TennisGame {
     public static final String[] SCORE_LABELS = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
     private int secondPlayerPoints;
     private int firstPlayerPoints;
-    private String firstPlayerName;
-    private String secondPlayerName;
+    private Player firstPlayer;
+    private Player secondPlayer;
 
     public TennisGame3(String firstPlayerName, String secondPlayerName) {
-        this.firstPlayerName = firstPlayerName;
-        this.secondPlayerName = secondPlayerName;
+        this.firstPlayer = new Player(firstPlayerName);
+        this.secondPlayer= new Player(secondPlayerName);
     }
 
     public String getScore() {
@@ -25,7 +25,7 @@ public class TennisGame3 implements TennisGame {
         if (doPlayersHaveEqualPoints())
             return "Deuce";
         boolean doFistPlayerHasMorePoints = firstPlayerPoints > secondPlayerPoints;
-        String leadingPlayerName = doFistPlayerHasMorePoints ? firstPlayerName : secondPlayerName;
+        String leadingPlayerName = doFistPlayerHasMorePoints ? firstPlayer.getName() : secondPlayer.getName();
         boolean oneOfThePlayersHasAdvantage = (firstPlayerPoints - secondPlayerPoints) * (firstPlayerPoints - secondPlayerPoints) == 1;
         String gameStatus = oneOfThePlayersHasAdvantage ? "Advantage " : "Win for ";
         return gameStatus + leadingPlayerName;
