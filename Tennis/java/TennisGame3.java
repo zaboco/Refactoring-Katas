@@ -1,6 +1,7 @@
 
 public class TennisGame3 implements TennisGame {
-    
+
+    public static final int MAXIMUM_GAME_POINTS = 4;
     private int secondPlayerPoints;
     private int firstPlayerPoints;
     private String firstPlayerName;
@@ -13,8 +14,8 @@ public class TennisGame3 implements TennisGame {
 
     public String getScore() {
         String s;
-        if (firstPlayerPoints < 4 && secondPlayerPoints < 4) {
-            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
+        if (firstPlayerPoints < MAXIMUM_GAME_POINTS && secondPlayerPoints < MAXIMUM_GAME_POINTS) {
+            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
             s = p[firstPlayerPoints];
             return (firstPlayerPoints == secondPlayerPoints) ? s + "-All" : s + "-" + p[secondPlayerPoints];
         } else {
