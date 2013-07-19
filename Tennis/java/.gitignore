@@ -47,3 +47,4 @@ nb-configuration.xml
 # Intellij
 *.iml
 .idea
+out
