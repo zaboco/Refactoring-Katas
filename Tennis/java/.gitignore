@@ -44,3 +44,6 @@ nbactions.xml
 nb-configuration.xml
 #NetBeans end
 
+# Intellij
+*.iml
+.idea
